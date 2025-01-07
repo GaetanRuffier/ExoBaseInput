@@ -15,6 +15,21 @@ const App = () => {
     }
   };
 
+  // Fonction pour convertir un nombre binaire en décimal
+  const handleBinaryChange = (value) => {
+    setBinary(value);
+    if (value === '') {
+      setDecimal('');
+    } else {
+      const isValidBinary = /^[01]*$/.test(value);
+      if (isValidBinary) {
+        setDecimal(parseInt(value, 2).toString(10));
+      } else {
+        setDecimal('Invalid');
+      }
+    }
+  };
+
   return (
     <div>
       <h1>Conversion Décimal - Binaire</h1>
@@ -26,7 +41,7 @@ const App = () => {
       <BaseNumberInput
         label="Nombre binaire :"
         value={binary}
-        readOnly={true}
+        onChangeBase={handleBinaryChange}
       />
     </div>
   );
